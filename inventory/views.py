@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from .models import *
-from .serializer import *
 from .forms import *
 
 def index(request):
