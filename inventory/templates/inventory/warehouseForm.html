@@ -1,0 +1,9 @@
+{% extends "inventory/base.html" %}
+{% block content %}
+Create an inventory
+ <form method = 'post' action = ''> 
+     {% csrf_token %}
+     {{form.as_p}}
+     <button type = 'submit' name = 'submit'>Submit</button>
+ </form>
+{% endblock %}

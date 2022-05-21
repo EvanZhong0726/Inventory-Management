@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = 'utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Inventory Management
+        </title>
+    </head>
+    <body>
+        <h1>Inventory Management</h1>
+        <div id = "inventories" name = "inventories">
+            {% block content %}
+            <button onclick="location.href = '/inventory/createInventory/'">Add an inventory</button>
+            <br><br>
+            <button onclick="location.href = '/inventory/createWarehouse/'">Add a warehouse</button>
+            <br>
+                <h2>Warehouses</h2>
+                {% if warehouses %}
+                 <ul>
+                     {% for warehouse in warehouses %}
+                     <li>
+                         <strong>{{forloop.counter}}</strong>
+                         City: {{warehouse.city}}, &nbsp;
+                         State: {{warehouse.state}}, &nbsp;
+                         Available capacity: {{warehouse.available_capacity}}
+                     </li>
+                     {% endfor %}
+                 </ul>
+                {% else %}
+                 <p>No warehouse available, please create one</p>
+                {% endif %}
+                <h2>Inventories</h2>
+                {% if inventoryItems %} 
+                <ul>
+                {% for inventoryItem in inventoryItems %}
+                <li>
+                    <strong>{{forloop.counter}}</strong>
+                    Product : {{inventoryItem.product}}, &nbsp;
+                    Location: {{inventoryItem.warehouse}}, &nbsp;
+                    Cost: {{inventoryItem.cost}}, &nbsp;
+                    Quantity: {{inventoryItem.quantity}} &nbsp;
+                    <button onClick = "location.href = '/inventory/updateInventory/?id={{inventoryItem.id}}'">update</button> &nbsp;
+                    <button onClick = "location.href = '/inventory/deleteInventory/?id={{inventoryItem.id}}'">delete</button>
+                </li>
+                {% endfor %}
+                </ul> 
+                {% else %}
+                <p>No inventories</p> 
+                {% endif %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
