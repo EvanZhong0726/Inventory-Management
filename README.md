@@ -1,6 +1,8 @@
 # Inventory-Management
 
-# The run command: python manage.py runserver 0.0.0.0:8000
+### Please cd into the inventory-management folder
+### The run command: 
+       python manage.py runserver 0.0.0.0:8000
 
 ### Basic functionalities:
 
