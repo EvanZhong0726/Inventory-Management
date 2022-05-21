@@ -11,9 +11,9 @@
         <h1>Inventory Management</h1>
         <div id = "inventories" name = "inventories">
             {% block content %}
-            <button onclick="location.href = '/inventory/createInventory/'">Add an inventory</button>
+            <button onclick="location.href = '/createInventory/'">Add an inventory</button>
             <br><br>
-            <button onclick="location.href = '/inventory/createWarehouse/'">Add a warehouse</button>
+            <button onclick="location.href = '/createWarehouse/'">Add a warehouse</button>
             <br>
                 <h2>Warehouses</h2>
                 {% if warehouses %}
@@ -40,8 +40,8 @@
                     Location: {{inventoryItem.warehouse}}, &nbsp;
                     Cost: {{inventoryItem.cost}}, &nbsp;
                     Quantity: {{inventoryItem.quantity}} &nbsp;
-                    <button onClick = "location.href = '/inventory/updateInventory/?id={{inventoryItem.id}}'">update</button> &nbsp;
-                    <button onClick = "location.href = '/inventory/deleteInventory/?id={{inventoryItem.id}}'">delete</button>
+                    <button onClick = "location.href = '/updateInventory/?id={{inventoryItem.id}}'">update</button> &nbsp;
+                    <button onClick = "location.href = '/deleteInventory/?id={{inventoryItem.id}}'">delete</button>
                 </li>
                 {% endfor %}
                 </ul> 

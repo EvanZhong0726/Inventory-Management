@@ -22,7 +22,7 @@ def createInventoryItem(request):
                 inventoryItem.save()
                 warehouse.available_capacity -= quantity
                 warehouse.save()
-                return HttpResponseRedirect("/inventory/") 
+                return HttpResponseRedirect("/") 
             else:
                 return HttpResponseBadRequest({"no available capacity at the chosen warehouse"})
     else:
@@ -39,7 +39,7 @@ def createWarehouse(request):
             if not Warehouse.objects.filter(city = city):
               warehouse = Warehouse(city = city, state = state, capacity = capacity, available_capacity = capacity)
               warehouse.save()
-              return HttpResponseRedirect("/inventory/")
+              return HttpResponseRedirect("/")
             else:
                 return HttpResponseBadRequest({"Please choose a different city"})
     else:
@@ -86,7 +86,7 @@ def updateInventoryItem(request):
                     inventoryItem.save()
                 else:
                     return HttpResponseBadRequest({"no available capacity at the chosen warehouse"})  
-            return HttpResponseRedirect("/inventory/") 
+            return HttpResponseRedirect("/") 
     else:
         form = CreateInventory(initial = {'product':inventoryItem.product, 'cost': inventoryItem.cost, 'warehouse': inventoryItem.warehouse, 'quantity': inventoryItem.quantity})
         return render(request, "inventory/inventoryForm.html",{'form':form})
@@ -97,5 +97,5 @@ def deleteInventoryItem(request):
     inventory.warehouse.available_capacity += inventory.quantity
     inventory.warehouse.save()
     inventory.delete()
-    return HttpResponseRedirect("/inventory/")
+    return HttpResponseRedirect("/")
     
