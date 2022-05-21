@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from .models import *
 from .forms import *
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     inventoryItems = InventoryItem.objects.all()
@@ -9,6 +10,7 @@ def index(request):
     context = {'inventoryItems' : inventoryItems, 'warehouses' : warehouses}
     return render(request, "inventory/base.html", context)
 
+@csrf_exempt
 def createInventoryItem(request):
     if request.method == 'POST':
         form = CreateInventory(request.POST)
@@ -29,6 +31,7 @@ def createInventoryItem(request):
         form = CreateInventory()
         return render(request, "inventory/inventoryForm.html", {'form':form})
 
+@csrf_exempt
 def createWarehouse(request):
     if request.method == 'POST':
         form = CreateWarehouse(request.POST)
@@ -46,6 +49,7 @@ def createWarehouse(request):
         form = CreateWarehouse()
         return render(request, "inventory/warehouseForm.html", {'form':form})
 
+@csrf_exempt
 def updateInventoryItem(request):
     num = request.GET['id'].split("/")[0]
     inventoryItem = InventoryItem.objects.get(id = num)
@@ -91,6 +95,7 @@ def updateInventoryItem(request):
         form = CreateInventory(initial = {'product':inventoryItem.product, 'cost': inventoryItem.cost, 'warehouse': inventoryItem.warehouse, 'quantity': inventoryItem.quantity})
         return render(request, "inventory/inventoryForm.html",{'form':form})
 
+@csrf_exempt
 def deleteInventoryItem(request):
     num = request.GET['id'].split("/")[0]
     inventory = InventoryItem.objects.get(id = num)
