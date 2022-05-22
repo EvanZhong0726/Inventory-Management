@@ -1,8 +1,8 @@
 # Inventory-Management
 
-### Please cd into the inventory-management folder
-### The run command: 
-       python manage.py runserver 0.0.0.0:8000
+### 
+     https://inventory-management.evanzhong0726.repl.co/
+     
 ### And then open the panel in a new tab
 
 ### Basic functionalities:
